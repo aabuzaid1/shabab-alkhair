@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فريق شباب الخير | Youth The Good</title>
+
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- OPTIONAL: EmailJS (for real "forgot password" emails) -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <style>
+      body { box-sizing: border-box; }
+      @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+      .font-arabic { font-family: 'Tajawal', Arial, sans-serif; }
+      .font-english { font-family: 'Poppins', Arial, sans-serif; }
+
+      .hero-gradient {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      }
+
+      .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+
+      .btn-primary { background: var(--primary-action-color); transition: all 0.3s ease; }
+      .btn-primary:hover { background: var(--primary-action-hover); transform: scale(1.05); }
+
+      .section-fade { animation: fadeIn 0.8s ease-in; }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .value-card { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.9); }
+    </style>
+
+    <style>@view-transition { navigation: auto; }</style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  </head>
+
+  <body class="h-full font-arabic">
+    <div class="app-wrapper w-full h-full overflow-auto" style="background: var(--background-color);">
+
+      <!-- Navigation -->
+      <nav class="sticky top-0 z-50 shadow-md" style="background: var(--surface-color);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+            <div class="flex items-center gap-3">
+              <!-- LOGO -->
+              <div class="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center border"
+     style="border-color: rgba(0,0,0,0.10); background: white;">
+  <img src="3444.jpeg" alt="Shabab Al-Khair Logo"
+       class="w-full h-full object-cover"
+       style="object-position: center; transform: scale(1.3); transition: transform 0.25s ease;" />
+</div>
+
+              <div>
+                <h1 id="nav-title-arabic" class="font-bold" style="font-size: calc(var(--base-font-size) * 1px); color: var(--text-color);"></h1>
+                <p id="nav-title-english" class="text-xs font-english" style="color: var(--text-color); opacity: 0.7;">Youth The Good</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button id="lang-toggle" class="px-4 py-2 rounded-lg font-medium transition-all"
+                style="background: var(--secondary-action-color); color: var(--text-color);">English</button>
+
+              <a id="instagram-nav"
+                 href="https://www.instagram.com/youth.the.g00d?igsh=MXJocm5ka2ZldGJqaA=="
+                 target="_blank"
+                 class="px-4 py-2 rounded-lg font-medium transition-all font-english"
+                 style="background: var(--secondary-action-color); color: white;">Instagram</a>
+
+              <button id="account-open" class="px-4 py-2 rounded-lg font-medium transition-all hidden"
+                style="background: var(--primary-color); color: white;">حسابي</button>
+
+              <button id="login-open" class="px-4 py-2 rounded-lg font-medium transition-all"
+                style="background: var(--primary-action-color); color: white;">تسجيل الدخول</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <section class="hero-gradient py-20 px-4 section-fade">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="mb-6"><span class="text-6xl">🌟</span></div>
+          <h2 id="hero-title" class="font-bold mb-6" style="font-size: calc(var(--base-font-size) * 2.5px); color: white;"></h2>
+          <p id="hero-description" class="mb-8 leading-relaxed" style="font-size: calc(var(--base-font-size) * 1.25px); color: white; opacity: 0.95;"></p>
+          <button id="hero-cta" class="btn-primary px-8 py-4 rounded-full font-bold text-white shadow-lg"
+                  style="font-size: calc(var(--base-font-size) * 1.1px);"></button>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h3 id="about-title" class="font-bold mb-4" style="font-size: calc(var(--base-font-size) * 2px); color: var(--text-color);"></h3>
+            <div class="w-20 h-1 mx-auto" style="background: var(--primary-color);"></div>
+          </div>
+          <div class="card-hover rounded-2xl p-8 shadow-lg value-card">
+            <p id="about-text" class="leading-relaxed" style="font-size: calc(var(--base-font-size) * 1.1px); color: var(--text-color);"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vision & Mission -->
+      <section class="py-16 px-4" style="background: var(--surface-color);">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+          <div class="card-hover rounded-2xl p-8 shadow-lg" style="background: var(--background-color);">
+            <div class="text-4xl mb-4">🎯</div>
+            <h4 id="vision-title" class="font-bold mb-4" style="font-size: calc(var(--base-font-size) * 1.5px); color: var(--text-color);"></h4>
+            <p id="vision-text" class="leading-relaxed" style="font-size: calc(var(--base-font-size) * 1px); color: var(--text-color);"></p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 shadow-lg" style="background: var(--background-color);">
+            <div class="text-4xl mb-4">🚀</div>
+            <h4 id="mission-title" class="font-bold mb-4" style="font-size: calc(var(--base-font-size) * 1.5px); color: var(--text-color);"></h4>
+            <p id="mission-text" class="leading-relaxed" style="font-size: calc(var(--base-font-size) * 1px); color: var(--text-color);"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values -->
+      <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h3 id="values-title" class="font-bold mb-4" style="font-size: calc(var(--base-font-size) * 2px); color: var(--text-color);"></h3>
+            <div class="w-20 h-1 mx-auto" style="background: var(--primary-color);"></div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <div class="card-hover rounded-xl p-6 text-center shadow-md value-card"><div class="text-3xl mb-3">💝</div><p id="value1" class="font-bold" style="font-size: calc(var(--base-font-size) * 0.95px); color: var(--text-color);"></p></div>
+            <div class="card-hover rounded-xl p-6 text-center shadow-md value-card"><div class="text-3xl mb-3">🤝</div><p id="value2" class="font-bold" style="font-size: calc(var(--base-font-size) * 0.95px); color: var(--text-color);"></p></div>
+            <div class="card-hover rounded-xl p-6 text-center shadow-md value-card"><div class="text-3xl mb-3">⚡</div><p id="value3" class="font-bold" style="font-size: calc(var(--base-font-size) * 0.95px); color: var(--text-color);"></p></div>
+            <div class="card-hover rounded-xl p-6 text-center shadow-md value-card"><div class="text-3xl mb-3">🔍</div><p id="value4" class="font-bold" style="font-size: calc(var(--base-font-size) * 0.95px); color: var(--text-color);"></p></div>
+            <div class="card-hover rounded-xl p-6 text-center shadow-md value-card"><div class="text-3xl mb-3">🙏</div><p id="value5" class="font-bold" style="font-size: calc(var(--base-font-size) * 0.95px); color: var(--text-color);"></p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Activities -->
+      <section class="py-16 px-4" style="background: var(--surface-color);">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h3 id="activities-title" class="font-bold mb-4" style="font-size: calc(var(--base-font-size) * 2px); color: var(--text-color);"></h3>
+            <div class="w-20 h-1 mx-auto" style="background: var(--primary-color);"></div>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="card-hover rounded-2xl p-8 shadow-lg" style="background: var(--background-color);"><div class="text-4xl mb-4">🎁</div><h5 id="activity1" class="font-bold mb-3" style="font-size: calc(var(--base-font-size) * 1.2px); color: var(--text-color);"></h5></div>
+            <div class="card-hover rounded-2xl p-8 shadow-lg" style="background: var(--background-color);"><div class="text-4xl mb-4">📚</div><h5 id="activity2" class="font-bold mb-3" style="font-size: calc(var(--base-font-size) * 1.2px); color: var(--text-color);"></h5></div>
+            <div class="card-hover rounded-2xl p-8 shadow-lg" style="background: var(--background-color);"><div class="text-4xl mb-4">👶</div><h5 id="activity3" class="font-bold mb-3" style="font-size: calc(var(--base-font-size) * 1.2px); color: var(--text-color);"></h5></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Join CTA -->
+      <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center card-hover rounded-2xl p-12 shadow-xl" style="background: var(--primary-color);">
+          <div class="text-5xl mb-6">🌟</div>
+          <h3 id="join-title" class="font-bold mb-6 text-white" style="font-size: calc(var(--base-font-size) * 2px);"></h3>
+          <p id="join-description" class="mb-6 text-white leading-relaxed" style="font-size: calc(var(--base-font-size) * 1.1px); opacity: 0.95;"></p>
+
+          <!-- Hidden iframe so submit doesn't navigate away (more reliable than fetch/CORS) -->
+          <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+          <!-- FormSubmit -> your Gmail -->
+          <form id="join-form" class="mt-6 grid gap-3"
+                action="https://formsubmit.co/abdelrahmanabuzaid311@gmail.com"
+                method="POST"
+                target="hidden_iframe">
+
+            <input type="hidden" name="_subject" value="طلب انضمام جديد | Shabab Al-Khair" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <!-- IMPORTANT: FormSubmit requires first-time email verification -->
+            <input type="hidden" name="_autoresponse" value="تم استلام طلبك بنجاح. سنقوم بالتواصل معك قريبًا. شكراً لانضمامك لفريق شباب الخير." />
+
+            <input id="join-fullname" name="fullName" class="w-full px-4 py-3 rounded-xl border"
+              style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95);"
+              placeholder="الاسم الكامل / Full Name" required />
+
+            <input id="join-phone" name="phone" class="w-full px-4 py-3 rounded-xl border"
+              style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95);"
+              placeholder="رقم الهاتف / Phone" required />
+
+            <!-- naming this 'email' helps FormSubmit set reply-to -->
+            <input id="join-email" name="email" type="email" class="w-full px-4 py-3 rounded-xl border"
+              style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95);"
+              placeholder="البريد الإلكتروني / Email" required />
+
+            <select id="join-interest" name="interest" class="w-full px-4 py-3 rounded-xl border"
+              style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95);">
+              <option value="مجال التطوع / Volunteer Area">مجال التطوع / Volunteer Area</option>
+              <option value="مبادرات خيرية / Charity">مبادرات خيرية / Charity</option>
+              <option value="تعليم وتوعية / Education">تعليم وتوعية / Education</option>
+              <option value="دعم أطفال / Children Support">دعم أطفال / Children Support</option>
+              <option value="إعلام وتصميم / Media & Design">إعلام وتصميم / Media & Design</option>
+              <option value="تنظيم فعاليات / Events">تنظيم فعاليات / Events</option>
+            </select>
+
+            <button type="submit" id="join-submit"
+              class="px-10 py-4 rounded-full font-bold shadow-lg transition-all hover:scale-105"
+              style="background: white; color: var(--primary-color); font-size: calc(var(--base-font-size) * 1.1px);">
+              إرسال الطلب / Submit
+            </button>
+
+            <p id="join-status" class="text-white text-sm opacity-90"></p>
+          </form>
+
+          <p class="mt-3 text-white text-xs opacity-80" id="join-note">
+            ملاحظة: أول مرة فقط قد يطلب منك تأكيد الإيميل داخل Gmail لتفعيل استقبال الطلبات من FormSubmit.
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="py-8 px-4 text-center" style="background: var(--surface-color); border-top: 2px solid var(--primary-color);">
+        <p id="footer-text" style="font-size: calc(var(--base-font-size) * 0.9px); color: var(--text-color);"></p>
+      </footer>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="auth-modal" class="fixed inset-0 hidden items-center justify-center z-[9999]">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative w-[92%] max-w-md rounded-2xl p-6 shadow-2xl"
+           style="background: var(--surface-color); color: var(--text-color);">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="auth-title" class="font-bold text-xl">تسجيل الدخول</h3>
+          <button id="auth-close" class="text-2xl leading-none" style="color: var(--text-color);">×</button>
+        </div>
+
+        <div class="space-y-3">
+          <input id="auth-name" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15); background: var(--background-color);"
+                 placeholder="الاسم الكامل (عند إنشاء حساب)">
+
+          <input id="auth-email" type="email" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15); background: var(--background-color);"
+                 placeholder="البريد الإلكتروني">
+
+          <input id="auth-password" type="password" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15); background: var(--background-color);"
+                 placeholder="كلمة المرور">
+
+          <div class="flex items-center justify-between">
+            <p id="auth-hint" class="text-sm opacity-80"></p>
+
+            <button id="forgot-open" type="button" class="text-sm underline"
+                    style="color: var(--secondary-action-color);">
+              نسيت كلمة المرور؟
+            </button>
+          </div>
+
+          <button id="auth-submit" class="w-full py-3 rounded-xl font-bold text-white btn-primary">دخول</button>
+
+          <button id="auth-switch" class="w-full py-3 rounded-xl font-medium"
+                  style="background: var(--secondary-action-color); color: white;">إنشاء حساب جديد</button>
+
+          <p id="auth-status" class="text-sm mt-2"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgot-modal" class="fixed inset-0 hidden items-center justify-center z-[9999]">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative w-[92%] max-w-md rounded-2xl p-6 shadow-2xl"
+           style="background: var(--surface-color); color: var(--text-color);">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="forgot-title" class="font-bold text-xl">استعادة كلمة المرور</h3>
+          <button id="forgot-close" class="text-2xl leading-none" style="color: var(--text-color);">×</button>
+        </div>
+
+        <div class="space-y-3">
+          <input id="forgot-email" type="email" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15); background: var(--background-color);"
+                 placeholder="اكتب الإيميل المسجل">
+
+          <button id="forgot-send" class="w-full py-3 rounded-xl font-bold text-white"
+                  style="background: var(--primary-color);">
+            إرسال رابط تغيير كلمة السر
+          </button>
+
+          <p id="forgot-status" class="text-sm opacity-90"></p>
+
+          <!-- Fallback link shown here if email sending isn't configured -->
+          <div id="forgot-link-box" class="hidden rounded-xl p-3 border text-sm"
+               style="border-color: rgba(0,0,0,0.12); background: var(--background-color);">
+            <p class="font-bold mb-2">رابط التغيير (انسخه):</p>
+            <a id="forgot-link" href="#" class="underline break-all" style="color: var(--secondary-action-color);"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reset Password Modal (opens if URL has ?reset=... ) -->
+    <div id="reset-modal" class="fixed inset-0 hidden items-center justify-center z-[9999]">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative w-[92%] max-w-md rounded-2xl p-6 shadow-2xl"
+           style="background: var(--surface-color); color: var(--text-color);">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="reset-title" class="font-bold text-xl">تعيين كلمة مرور جديدة</h3>
+          <button id="reset-close" class="text-2xl leading-none" style="color: var(--text-color);">×</button>
+        </div>
+
+        <div class="space-y-3">
+          <input id="reset-newpass" type="password" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15); background: var(--background-color);"
+                 placeholder="كلمة المرور الجديدة">
+
+          <input id="reset-confirm" type="password" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15); background: var(--background-color);"
+                 placeholder="تأكيد كلمة المرور">
+
+          <button id="reset-save" class="w-full py-3 rounded-xl font-bold text-white"
+                  style="background: var(--primary-color);">
+            حفظ
+          </button>
+
+          <p id="reset-status" class="text-sm opacity-90"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Name Modal -->
+    <div id="edit-name-modal" class="fixed inset-0 hidden items-center justify-center z-[9999]">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative w-[92%] max-w-md rounded-2xl p-6 shadow-2xl"
+           style="background: var(--surface-color); color: var(--text-color);">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="edit-name-title" class="font-bold text-xl">تعديل الاسم</h3>
+          <button id="edit-name-close" class="text-2xl leading-none" style="color: var(--text-color);">×</button>
+        </div>
+        <div class="space-y-3">
+          <input id="edit-name-input" type="text" placeholder="الاسم الجديد" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15);" />
+          <button id="edit-name-save" class="w-full px-4 py-3 rounded-lg font-bold text-white"
+                  style="background: var(--primary-action-color);">
+            حفظ
+          </button>
+          <p id="edit-name-status" class="text-sm text-center opacity-80"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Password Modal -->
+    <div id="edit-password-modal" class="fixed inset-0 hidden items-center justify-center z-[9999]">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative w-[92%] max-w-md rounded-2xl p-6 shadow-2xl"
+           style="background: var(--surface-color); color: var(--text-color);">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="edit-password-title" class="font-bold text-xl">تعديل كلمة المرور</h3>
+          <button id="edit-password-close" class="text-2xl leading-none" style="color: var(--text-color);">×</button>
+        </div>
+        <div class="space-y-3">
+          <input id="edit-password-old" type="password" placeholder="كلمة المرور الحالية" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15);" />
+          <input id="edit-password-new" type="password" placeholder="كلمة المرور الجديدة" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15);" />
+          <input id="edit-password-confirm" type="password" placeholder="تأكيد كلمة المرور الجديدة" class="w-full px-4 py-3 rounded-xl border"
+                 style="border-color: rgba(0,0,0,0.15);" />
+          <button id="edit-password-save" class="w-full px-4 py-3 rounded-lg font-bold text-white"
+                  style="background: var(--primary-action-color);">
+            حفظ
+          </button>
+          <p id="edit-password-status" class="text-sm text-center opacity-80"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account / Settings Modal -->
+    <div id="account-modal" class="fixed inset-0 hidden items-center justify-center z-[9999]">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative w-[92%] max-w-2xl rounded-2xl p-6 shadow-2xl"
+           style="background: var(--surface-color); color: var(--text-color);">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="account-title" class="font-bold text-xl">لوحة الحساب</h3>
+          <button id="account-close" class="text-2xl leading-none" style="color: var(--text-color);">×</button>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="rounded-xl p-4 border" style="border-color: rgba(0,0,0,0.12); background: var(--background-color);">
+            <h4 id="account-info-title" class="font-bold mb-2">معلومات الحساب</h4>
+            <div class="text-sm space-y-1">
+              <p><span class="font-bold" id="lbl-name">الاسم:</span> <span id="acc-name">—</span></p>
+              <p><span class="font-bold" id="lbl-email">الإيميل:</span> <span id="acc-email">—</span></p>
+              <p><span class="font-bold" id="lbl-time">آخر دخول:</span> <span id="acc-time">—</span></p>
+            </div>
+
+            <div class="mt-4 space-y-2">
+              <button id="edit-name-btn" class="w-full px-4 py-2 rounded-lg font-bold text-white"
+                      style="background: var(--primary-color);">
+                تعديل الاسم
+              </button>
+              <button id="edit-password-btn" class="w-full px-4 py-2 rounded-lg font-bold text-white"
+                      style="background: var(--primary-color);">
+                تعديل كلمة المرور
+              </button>
+              <button id="logout-btn" class="w-full px-4 py-2 rounded-lg font-bold text-white"
+                      style="background: var(--primary-action-color);">
+                تسجيل خروج
+              </button>
+            </div>
+
+            <p id="acc-status" class="text-sm mt-2 opacity-80"></p>
+          </div>
+
+          <div class="rounded-xl p-4 border" style="border-color: rgba(0,0,0,0.12); background: var(--background-color);">
+            <h4 id="account-settings-title" class="font-bold mb-2">إعدادات الألوان</h4>
+
+            <div class="space-y-3 text-sm">
+              <div class="flex items-center justify-between gap-3"><span id="lbl-bg">الخلفية</span><input id="set-bg" type="color" class="w-12 h-10 rounded-lg border" style="border-color: rgba(0,0,0,0.15);" /></div>
+              <div class="flex items-center justify-between gap-3"><span id="lbl-surface">سطح/كروت</span><input id="set-surface" type="color" class="w-12 h-10 rounded-lg border" style="border-color: rgba(0,0,0,0.15);" /></div>
+              <div class="flex items-center justify-between gap-3"><span id="lbl-text">لون النص</span><input id="set-text" type="color" class="w-12 h-10 rounded-lg border" style="border-color: rgba(0,0,0,0.15);" /></div>
+              <div class="flex items-center justify-between gap-3"><span id="lbl-primary">اللون الأساسي</span><input id="set-primary" type="color" class="w-12 h-10 rounded-lg border" style="border-color: rgba(0,0,0,0.15);" /></div>
+              <div class="flex items-center justify-between gap-3"><span id="lbl-action">لون زر الأكشن</span><input id="set-action" type="color" class="w-12 h-10 rounded-lg border" style="border-color: rgba(0,0,0,0.15);" /></div>
+
+              <div class="flex gap-2 pt-2">
+                <button id="save-theme" class="px-4 py-2 rounded-lg font-bold text-white" style="background: var(--primary-color);">حفظ وتطبيق</button>
+                <button id="reset-theme" class="px-4 py-2 rounded-lg font-bold" style="background: var(--secondary-action-color); color: white;">رجوع للافتراضي</button>
+              </div>
+
+              <p class="text-xs opacity-80" id="theme-note">يتم حفظ الألوان في المتصفح لهذا الجهاز.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      // =========================
+      // EmailJS CONFIG (optional)
+      // =========================
+      // لكي يرسل "نسيت كلمة السر" إيميل فعليًا للمستخدم:
+      // 1) افتح EmailJS
+      // 2) اعمل Service + Template
+      // 3) ضع القيم هنا
+      const EMAILJS_PUBLIC_KEY = "";   // مثال: "AbC123..."
+      const EMAILJS_SERVICE_ID = "";   // مثال: "service_xxx"
+      const EMAILJS_TEMPLATE_ID = "";  // مثال: "template_xxx"
+
+      // Template variables المقترحة داخل EmailJS:
+      // to_email = ايميل المستخدم
+      // reset_link = رابط تغيير كلمة المرور
+      // team_name = اسم الفريق
+
+      function canSendEmail() {
+        return EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && window.emailjs;
+      }
+
+      function initEmailJsIfPossible() {
+        try {
+          if (canSendEmail()) {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+          }
+        } catch {}
+      }
+
+      // ---------- Helpers ----------
+      function safeParse(json, fallback) { try { return JSON.parse(json); } catch { return fallback; } }
+      function getSession() { return safeParse(localStorage.getItem('sk_session') || 'null', null); }
+      function setSession(session) { localStorage.setItem('sk_session', JSON.stringify(session)); }
+      function clearSession() { localStorage.removeItem('sk_session'); }
+
+      function randomToken(len = 32) {
+        const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let out = "";
+        for (let i = 0; i < len; i++) out += chars[Math.floor(Math.random() * chars.length)];
+        return out;
+      }
+
+      // Store reset tokens in localStorage (demo only)
+      // sk_reset_tokens: { token: { email, exp } }
+      function saveResetToken(token, email) {
+        const map = safeParse(localStorage.getItem('sk_reset_tokens') || '{}', {});
+        map[token] = { email, exp: Date.now() + (30 * 60 * 1000) }; // 30 minutes
+        localStorage.setItem('sk_reset_tokens', JSON.stringify(map));
+      }
+
+      function consumeResetToken(token) {
+        const map = safeParse(localStorage.getItem('sk_reset_tokens') || '{}', {});
+        const data = map[token];
+        if (!data) return null;
+        if (Date.now() > data.exp) {
+          delete map[token];
+          localStorage.setItem('sk_reset_tokens', JSON.stringify(map));
+          return null;
+        }
+        // keep it until used
+        return data;
+      }
+
+      function deleteResetToken(token) {
+        const map = safeParse(localStorage.getItem('sk_reset_tokens') || '{}', {});
+        delete map[token];
+        localStorage.setItem('sk_reset_tokens', JSON.stringify(map));
+      }
+
+      // ---------- Default Config ----------
+      const defaultConfig = {
+        background_color: '#f8f9fa',
+        surface_color: '#ffffff',
+        text_color: '#2c3e50',
+        primary_color: '#27ae60',
+        secondary_color: '#16a085',
+        primary_action_color: '#e74c3c',
+        primary_action_hover: '#c0392b',
+        secondary_action_color: '#3498db',
+        base_font_size: 16,
+        team_name_arabic: 'فريق شباب الخير',
+        team_name_english: 'Shabab Al-Khair Youth Team',
+        hero_title_arabic: 'نحن فريق شباب الخير',
+        hero_description_arabic: 'فريق شبابي تطوعي يعمل بروح العطاء لخدمة المجتمع، ودعم المبادرات الإنسانية، وتمكين الشباب ليكونوا عنصرًا فاعلًا في التغيير الإيجابي.',
+        hero_cta_arabic: 'كن جزءًا من الخير – انضم إلينا',
+        hero_title_english: 'Shabab Al-Khair Youth Team',
+        hero_description_english: 'A youth volunteer team driven by the spirit of giving, working to serve the community, support humanitarian initiatives, and empower young people to become active agents of positive change.',
+        hero_cta_english: 'Be Part of the Good – Join Us',
+        vision_arabic: 'بناء مجتمع متكافل يقوده شباب واعٍ، مبادر، ومؤمن بقيمة العمل التطوعي.',
+        mission_arabic: 'تمكين الشباب للمشاركة الفاعلة في خدمة المجتمع، من خلال تنظيم العمل التطوعي وتنفيذ مبادرات إنسانية تعزز قيم الخير، التعاون، والانتماء.',
+        vision_english: 'Building a supportive community led by aware, proactive youth who believe in the power of volunteer work.',
+        mission_english: 'To empower youth to actively serve their community through organized volunteer work and humanitarian initiatives that promote kindness, cooperation, and belonging.',
+        footer_copyright: '© 2024 فريق شباب الخير | Shabab Al-Khair Youth Team'
+      };
+
+      const savedTheme = safeParse(localStorage.getItem('sk_theme') || 'null', null);
+      let currentLang = 'ar';
+
+      const content = {
+        ar: {
+          langButton: 'English',
+          aboutTitle: 'من نحن',
+          aboutText: 'تأسس فريق شباب الخير كمبادرة شبابية تطوعية غير ربحية، يقودها شباب يؤمنون بأهمية العمل الجماعي والمسؤولية المجتمعية. نهدف إلى تنفيذ مبادرات تطوعية وإنسانية تُحدث أثرًا حقيقيًا ومستدامًا في المجتمع.',
+          visionTitle: 'رؤيتنا',
+          missionTitle: 'رسالتنا',
+          valuesTitle: 'قيمنا',
+          value1: 'العطاء',
+          value2: 'التعاون',
+          value3: 'الالتزام',
+          value4: 'الشفافية',
+          value5: 'الاحترام',
+          activitiesTitle: 'مجالات عملنا',
+          activity1: 'المبادرات الخيرية والإنسانية',
+          activity2: 'الأنشطة التعليمية والتوعوية',
+          activity3: 'دعم الأطفال والأيتام',
+          joinTitle: 'لماذا تنضم إلينا؟',
+          joinDescription: 'الانضمام إلى فريق شباب الخير يمنحك فرصة حقيقية لصناعة أثر إيجابي في المجتمع، ولاكتساب خبرة تطوعية حقيقية، ولتطوير مهاراتك الشخصية والقيادية.',
+          loginBtn: 'تسجيل الدخول',
+          accountBtn: 'حسابي',
+          submitSuccess: 'تم إرسال الطلب. إذا كان FormSubmit مفعّلًا، ستصلك رسالة على الإيميل.',
+          submitFail: 'تعذر الإرسال. جرّب مرة ثانية.',
+
+          forgotTitle: 'استعادة كلمة المرور',
+          forgotBtn: 'إرسال رابط تغيير كلمة السر',
+          forgotNoUser: 'هذا الإيميل غير مسجّل لدينا.',
+          forgotSent: 'تم تجهيز الرابط. إذا EmailJS مفعّل، سيتم إرسال الإيميل الآن.',
+          forgotFallback: 'EmailJS غير مفعّل. انسخ الرابط من الأسفل وأرسله للمستخدم.',
+
+          resetTitle: 'تعيين كلمة مرور جديدة',
+          resetMismatch: 'كلمتا المرور غير متطابقتين.',
+          resetInvalid: 'الرابط غير صالح أو انتهت صلاحيته.',
+          resetDone: 'تم تغيير كلمة المرور. يمكنك تسجيل الدخول الآن.',
+
+          accountTitle: 'لوحة الحساب',
+          accountInfoTitle: 'معلومات الحساب',
+          accountSettingsTitle: 'إعدادات الألوان',
+          lblName: 'الاسم:',
+          lblEmail: 'الإيميل:',
+          lblTime: 'آخر دخول:',
+          lblBg: 'الخلفية',
+          lblSurface: 'سطح/كروت',
+          lblText: 'لون النص',
+          lblPrimary: 'اللون الأساسي',
+          lblAction: 'لون زر الأكشن',
+          saveApply: 'حفظ وتطبيق',
+          resetDefault: 'رجوع للافتراضي',
+          logout: 'تسجيل خروج',
+          editName: 'تعديل الاسم',
+          editPassword: 'تعديل كلمة المرور',
+          editNameTitle: 'تعديل الاسم',
+          editPasswordTitle: 'تعديل كلمة المرور',
+          themeNote: 'يتم حفظ الألوان في المتصفح لهذا الجهاز.'
+        },
+        en: {
+          langButton: 'عربي',
+          aboutTitle: 'About Us',
+          aboutText: 'Shabab Al-Khair was established as a non-profit youth volunteer initiative led by young people who believe in teamwork and social responsibility. We aim to implement volunteer and humanitarian initiatives that create real and sustainable impact.',
+          visionTitle: 'Our Vision',
+          missionTitle: 'Our Mission',
+          valuesTitle: 'Our Values',
+          value1: 'Giving',
+          value2: 'Cooperation',
+          value3: 'Commitment',
+          value4: 'Transparency',
+          value5: 'Respect',
+          activitiesTitle: 'Our Activities',
+          activity1: 'Charity & Humanitarian Initiatives',
+          activity2: 'Educational & Awareness Activities',
+          activity3: 'Supporting Children & Orphans',
+          joinTitle: 'Why Join Us?',
+          joinDescription: 'Joining Shabab Al-Khair gives you a real opportunity to make positive community impact, gain valuable volunteer experience, and develop personal and leadership skills.',
+          loginBtn: 'Login',
+          accountBtn: 'My Account',
+          submitSuccess: 'Submitted. If FormSubmit is activated, you will receive the email.',
+          submitFail: 'Submission failed. Please try again.',
+
+          forgotTitle: 'Password Recovery',
+          forgotBtn: 'Send reset link',
+          forgotNoUser: 'This email is not registered.',
+          forgotSent: 'Reset link generated. If EmailJS is configured, an email will be sent now.',
+          forgotFallback: 'EmailJS is not configured. Copy the link below and send it to the user.',
+
+          resetTitle: 'Set a new password',
+          resetMismatch: 'Passwords do not match.',
+          resetInvalid: 'Invalid or expired link.',
+          resetDone: 'Password updated. You can login now.',
+
+          accountTitle: 'Account Dashboard',
+          accountInfoTitle: 'Account Info',
+          accountSettingsTitle: 'Theme Settings',
+          lblName: 'Name:',
+          lblEmail: 'Email:',
+          lblTime: 'Last login:',
+          lblBg: 'Background',
+          lblSurface: 'Surface',
+          lblText: 'Text color',
+          lblPrimary: 'Primary',
+          lblAction: 'Action button',
+          saveApply: 'Save & Apply',
+          resetDefault: 'Reset Default',
+          logout: 'Logout',
+          editName: 'Edit Name',
+          editPassword: 'Edit Password',
+          editNameTitle: 'Edit Name',
+          editPasswordTitle: 'Edit Password',
+          themeNote: 'Theme is saved in this browser on this device.'
+        }
+      };
+
+      function applyConfigToCssVars(config) {
+        document.documentElement.style.setProperty('--background-color', config.background_color || defaultConfig.background_color);
+        document.documentElement.style.setProperty('--surface-color', config.surface_color || defaultConfig.surface_color);
+        document.documentElement.style.setProperty('--text-color', config.text_color || defaultConfig.text_color);
+        document.documentElement.style.setProperty('--primary-color', config.primary_color || defaultConfig.primary_color);
+        document.documentElement.style.setProperty('--secondary-color', config.secondary_color || defaultConfig.secondary_color);
+        document.documentElement.style.setProperty('--primary-action-color', config.primary_action_color || defaultConfig.primary_action_color);
+        document.documentElement.style.setProperty('--primary-action-hover', config.primary_action_hover || defaultConfig.primary_action_hover);
+        document.documentElement.style.setProperty('--secondary-action-color', config.secondary_action_color || defaultConfig.secondary_action_color);
+        document.documentElement.style.setProperty('--base-font-size', config.base_font_size || defaultConfig.base_font_size);
+      }
+
+      function updateNavAuthState() {
+        const session = getSession();
+        const loginBtn = document.getElementById('login-open');
+        const accountBtn = document.getElementById('account-open');
+        if (session) {
+          loginBtn.classList.add('hidden');
+          accountBtn.classList.remove('hidden');
+        } else {
+          loginBtn.classList.remove('hidden');
+          accountBtn.classList.add('hidden');
+        }
+      }
+
+      function updateContent(config) {
+        const c = content[currentLang];
+        applyConfigToCssVars(config);
+
+        document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+        document.body.className = currentLang === 'ar' ? 'h-full font-arabic' : 'h-full font-english';
+
+        document.getElementById('nav-title-arabic').textContent = config.team_name_arabic || defaultConfig.team_name_arabic;
+        document.getElementById('nav-title-english').textContent = config.team_name_english || defaultConfig.team_name_english;
+        document.getElementById('lang-toggle').textContent = c.langButton;
+
+        document.getElementById('login-open').textContent = c.loginBtn;
+        document.getElementById('account-open').textContent = c.accountBtn;
+
+        document.getElementById('hero-title').textContent = currentLang === 'ar'
+          ? (config.hero_title_arabic || defaultConfig.hero_title_arabic)
+          : (config.hero_title_english || defaultConfig.hero_title_english);
+
+        document.getElementById('hero-description').textContent = currentLang === 'ar'
+          ? (config.hero_description_arabic || defaultConfig.hero_description_arabic)
+          : (config.hero_description_english || defaultConfig.hero_description_english);
+
+        document.getElementById('hero-cta').textContent = currentLang === 'ar'
+          ? (config.hero_cta_arabic || defaultConfig.hero_cta_arabic)
+          : (config.hero_cta_english || defaultConfig.hero_cta_english);
+
+        document.getElementById('about-title').textContent = c.aboutTitle;
+        document.getElementById('about-text').textContent = c.aboutText;
+
+        document.getElementById('vision-title').textContent = c.visionTitle;
+        document.getElementById('vision-text').textContent = currentLang === 'ar'
+          ? (config.vision_arabic || defaultConfig.vision_arabic)
+          : (config.vision_english || defaultConfig.vision_english);
+
+        document.getElementById('mission-title').textContent = c.missionTitle;
+        document.getElementById('mission-text').textContent = currentLang === 'ar'
+          ? (config.mission_arabic || defaultConfig.mission_arabic)
+          : (config.mission_english || defaultConfig.mission_english);
+
+        document.getElementById('values-title').textContent = c.valuesTitle;
+        document.getElementById('value1').textContent = c.value1;
+        document.getElementById('value2').textContent = c.value2;
+        document.getElementById('value3').textContent = c.value3;
+        document.getElementById('value4').textContent = c.value4;
+        document.getElementById('value5').textContent = c.value5;
+
+        document.getElementById('activities-title').textContent = c.activitiesTitle;
+        document.getElementById('activity1').textContent = c.activity1;
+        document.getElementById('activity2').textContent = c.activity2;
+        document.getElementById('activity3').textContent = c.activity3;
+
+        document.getElementById('join-title').textContent = c.joinTitle;
+        document.getElementById('join-description').textContent = c.joinDescription;
+        document.getElementById('footer-text').textContent = config.footer_copyright || defaultConfig.footer_copyright;
+
+        // labels in modals
+        document.getElementById('forgot-title').textContent = c.forgotTitle;
+        document.getElementById('forgot-send').textContent = c.forgotBtn;
+        document.getElementById('reset-title').textContent = c.resetTitle;
+
+        document.getElementById('account-title').textContent = c.accountTitle;
+        document.getElementById('account-info-title').textContent = c.accountInfoTitle;
+        document.getElementById('account-settings-title').textContent = c.accountSettingsTitle;
+        document.getElementById('lbl-name').textContent = c.lblName;
+        document.getElementById('lbl-email').textContent = c.lblEmail;
+        document.getElementById('lbl-time').textContent = c.lblTime;
+        document.getElementById('lbl-bg').textContent = c.lblBg;
+        document.getElementById('lbl-surface').textContent = c.lblSurface;
+        document.getElementById('lbl-text').textContent = c.lblText;
+        document.getElementById('lbl-primary').textContent = c.lblPrimary;
+        document.getElementById('lbl-action').textContent = c.lblAction;
+        document.getElementById('save-theme').textContent = c.saveApply;
+        document.getElementById('reset-theme').textContent = c.resetDefault;
+        document.getElementById('edit-name-btn').textContent = c.editName;
+        document.getElementById('edit-password-btn').textContent = c.editPassword;
+        document.getElementById('edit-name-title').textContent = c.editNameTitle;
+        document.getElementById('edit-password-title').textContent = c.editPasswordTitle;
+        document.getElementById('logout-btn').textContent = c.logout;
+        document.getElementById('theme-note').textContent = c.themeNote;
+
+        updateNavAuthState();
+        renderAuth();
+      }
+
+      document.getElementById('lang-toggle').addEventListener('click', () => {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        updateContent(window.elementSdk ? window.elementSdk.config : (savedTheme || defaultConfig));
+      });
+
+      document.getElementById('hero-cta').addEventListener('click', () => {
+        document.querySelector('#join-title').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // ---------- Element SDK ----------
+      const element = {
+        defaultConfig: defaultConfig,
+        onConfigChange: async (config) => { updateContent(config); },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            { get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); } },
+            { get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); } },
+            { get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); } },
+            { get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); } },
+            { get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => { config.primary_action_color = value; window.elementSdk.setConfig({ primary_action_color: value }); } }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: {
+            get: () => config.base_font_size || defaultConfig.base_font_size,
+            set: (value) => { config.base_font_size = value; window.elementSdk.setConfig({ base_font_size: value }); }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['team_name_arabic', config.team_name_arabic || defaultConfig.team_name_arabic],
+          ['team_name_english', config.team_name_english || defaultConfig.team_name_english],
+          ['hero_title_arabic', config.hero_title_arabic || defaultConfig.hero_title_arabic],
+          ['hero_description_arabic', config.hero_description_arabic || defaultConfig.hero_description_arabic],
+          ['hero_cta_arabic', config.hero_cta_arabic || defaultConfig.hero_cta_arabic],
+          ['hero_title_english', config.hero_title_english || defaultConfig.hero_title_english],
+          ['hero_description_english', config.hero_description_english || defaultConfig.hero_description_english],
+          ['hero_cta_english', config.hero_cta_english || defaultConfig.hero_cta_english],
+          ['vision_arabic', config.vision_arabic || defaultConfig.vision_arabic],
+          ['mission_arabic', config.mission_arabic || defaultConfig.mission_arabic],
+          ['vision_english', config.vision_english || defaultConfig.vision_english],
+          ['mission_english', config.mission_english || defaultConfig.mission_english],
+          ['footer_copyright', config.footer_copyright || defaultConfig.footer_copyright]
+        ])
+      };
+
+      if (window.elementSdk) window.elementSdk.init(element);
+
+      // ---------- Auth (local demo) ----------
+      let authMode = 'login';
+
+      const authModal = document.getElementById('auth-modal');
+      const loginOpen = document.getElementById('login-open');
+      const authClose = document.getElementById('auth-close');
+      const authTitle = document.getElementById('auth-title');
+      const authName = document.getElementById('auth-name');
+      const authEmail = document.getElementById('auth-email');
+      const authPassword = document.getElementById('auth-password');
+      const authHint = document.getElementById('auth-hint');
+      const authSubmit = document.getElementById('auth-submit');
+      const authSwitch = document.getElementById('auth-switch');
+      const authStatus = document.getElementById('auth-status');
+
+      function openAuth() {
+        authModal.classList.remove('hidden');
+        authModal.classList.add('flex');
+        renderAuth();
+      }
+      function closeAuth() {
+        authModal.classList.add('hidden');
+        authModal.classList.remove('flex');
+        authStatus.textContent = '';
+      }
+      function renderAuth() {
+        const isAr = currentLang === 'ar';
+        const isSignup = authMode === 'signup';
+
+        authTitle.textContent = isSignup ? (isAr ? 'إنشاء حساب' : 'Create Account') : (isAr ? 'تسجيل الدخول' : 'Login');
+        authSubmit.textContent = isSignup ? (isAr ? 'إنشاء حساب' : 'Create') : (isAr ? 'دخول' : 'Login');
+        authSwitch.textContent = isSignup
+          ? (isAr ? 'لديك حساب؟ تسجيل الدخول' : 'Have an account? Login')
+          : (isAr ? 'إنشاء حساب جديد' : 'Create New Account');
+
+        authName.style.display = isSignup ? 'block' : 'none';
+        authHint.textContent = isAr
+          ? 'ملاحظة: هذا نموذج واجهة فقط، ويتم الحفظ محليًا داخل المتصفح.'
+          : 'Note: This is a UI demo. Data is stored locally in the browser only.';
+      }
+
+      loginOpen.addEventListener('click', openAuth);
+      authClose.addEventListener('click', closeAuth);
+      authModal.addEventListener('click', (e) => { if (e.target === authModal) closeAuth(); });
+
+      authSwitch.addEventListener('click', () => { authMode = authMode === 'login' ? 'signup' : 'login'; renderAuth(); });
+
+      authSubmit.addEventListener('click', () => {
+        const email = (authEmail.value || '').trim().toLowerCase();
+        const password = (authPassword.value || '').trim();
+        const name = (authName.value || '').trim();
+
+        if (!email || !password) {
+          authStatus.textContent = currentLang === 'ar' ? 'يرجى إدخال البريد وكلمة المرور.' : 'Please enter email and password.';
+          return;
+        }
+
+        const users = safeParse(localStorage.getItem('sk_users') || '[]', []);
+
+        if (authMode === 'signup') {
+          if (!name) { authStatus.textContent = currentLang === 'ar' ? 'يرجى إدخال الاسم.' : 'Please enter your name.'; return; }
+          if (users.some(u => u.email === email)) {
+            authStatus.textContent = currentLang === 'ar' ? 'هذا البريد مسجّل مسبقًا.' : 'This email is already registered.';
+            return;
+          }
+          users.push({ name, email, password, createdAt: new Date().toISOString() });
+          localStorage.setItem('sk_users', JSON.stringify(users));
+          authStatus.textContent = currentLang === 'ar'
+            ? 'تم إنشاء الحساب بنجاح. يمكنك تسجيل الدخول الآن.'
+            : 'Account created. You can login now.';
+          authMode = 'login';
+          renderAuth();
+          return;
+        }
+
+        const user = users.find(u => u.email === email && u.password === password);
+        if (!user) {
+          authStatus.textContent = currentLang === 'ar' ? 'بيانات الدخول غير صحيحة.' : 'Invalid credentials.';
+          return;
+        }
+
+        setSession({ email: user.email, name: user.name, loggedInAt: new Date().toISOString() });
+        updateNavAuthState();
+
+        setTimeout(() => { closeAuth(); openAccount(); }, 400);
+      });
+
+      // ---------- Forgot Password ----------
+      const forgotOpen = document.getElementById('forgot-open');
+      const forgotModal = document.getElementById('forgot-modal');
+      const forgotClose = document.getElementById('forgot-close');
+      const forgotEmail = document.getElementById('forgot-email');
+      const forgotSend = document.getElementById('forgot-send');
+      const forgotStatus = document.getElementById('forgot-status');
+      const forgotLinkBox = document.getElementById('forgot-link-box');
+      const forgotLinkA = document.getElementById('forgot-link');
+
+      function openForgot() {
+        forgotStatus.textContent = '';
+        forgotLinkBox.classList.add('hidden');
+        forgotEmail.value = (authEmail.value || '').trim().toLowerCase();
+        forgotModal.classList.remove('hidden');
+        forgotModal.classList.add('flex');
+      }
+      function closeForgot() {
+        forgotModal.classList.add('hidden');
+        forgotModal.classList.remove('flex');
+      }
+
+      forgotOpen.addEventListener('click', openForgot);
+      forgotClose.addEventListener('click', closeForgot);
+      forgotModal.addEventListener('click', (e) => { if (e.target === forgotModal) closeForgot(); });
+
+      async function sendResetEmailViaEmailJs(toEmail, resetLink) {
+        // Requires EmailJS configured above
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email: toEmail,
+          reset_link: resetLink,
+          team_name: "Shabab Al-Khair Youth Team"
+        });
+      }
+
+      forgotSend.addEventListener('click', async () => {
+        const c = content[currentLang];
+        const email = (forgotEmail.value || '').trim().toLowerCase();
+        if (!email) return;
+
+        const users = safeParse(localStorage.getItem('sk_users') || '[]', []);
+        const user = users.find(u => u.email === email);
+        if (!user) {
+          forgotStatus.textContent = c.forgotNoUser;
+          return;
+        }
+
+        const token = randomToken(40);
+        saveResetToken(token, email);
+
+        // Build reset link to same page with query params
+        const baseUrl = window.location.origin + window.location.pathname;
+        const resetLink = `${baseUrl}?reset=${encodeURIComponent(token)}&email=${encodeURIComponent(email)}`;
+
+        forgotStatus.textContent = c.forgotSent;
+
+        // Try EmailJS, else show link on screen
+        try {
+          initEmailJsIfPossible();
+          if (canSendEmail()) {
+            await sendResetEmailViaEmailJs(email, resetLink);
+          } else {
+            forgotStatus.textContent = c.forgotFallback;
+            forgotLinkA.textContent = resetLink;
+            forgotLinkA.href = resetLink;
+            forgotLinkBox.classList.remove('hidden');
+          }
+        } catch (err) {
+          forgotStatus.textContent = c.forgotFallback;
+          forgotLinkA.textContent = resetLink;
+          forgotLinkA.href = resetLink;
+          forgotLinkBox.classList.remove('hidden');
+        }
+      });
+
+      // ---------- Reset Password (from link) ----------
+      const resetModal = document.getElementById('reset-modal');
+      const resetClose = document.getElementById('reset-close');
+      const resetNew = document.getElementById('reset-newpass');
+      const resetConfirm = document.getElementById('reset-confirm');
+      const resetSave = document.getElementById('reset-save');
+      const resetStatus = document.getElementById('reset-status');
+
+      let pendingResetToken = null;
+      let pendingResetEmail = null;
+
+      function openReset() {
+        resetStatus.textContent = '';
+        resetNew.value = '';
+        resetConfirm.value = '';
+        resetModal.classList.remove('hidden');
+        resetModal.classList.add('flex');
+      }
+      function closeReset() {
+        resetModal.classList.add('hidden');
+        resetModal.classList.remove('flex');
+      }
+
+      resetClose.addEventListener('click', closeReset);
+      resetModal.addEventListener('click', (e) => { if (e.target === resetModal) closeReset(); });
+
+      resetSave.addEventListener('click', () => {
+        const c = content[currentLang];
+        if (!pendingResetToken || !pendingResetEmail) {
+          resetStatus.textContent = c.resetInvalid;
+          return;
+        }
+        const p1 = (resetNew.value || '').trim();
+        const p2 = (resetConfirm.value || '').trim();
+        if (!p1 || p1 !== p2) {
+          resetStatus.textContent = c.resetMismatch;
+          return;
+        }
+
+        const data = consumeResetToken(pendingResetToken);
+        if (!data || data.email !== pendingResetEmail) {
+          resetStatus.textContent = c.resetInvalid;
+          return;
+        }
+
+        const users = safeParse(localStorage.getItem('sk_users') || '[]', []);
+        const idx = users.findIndex(u => u.email === pendingResetEmail);
+        if (idx === -1) {
+          resetStatus.textContent = c.resetInvalid;
+          return;
+        }
+
+        users[idx].password = p1;
+        localStorage.setItem('sk_users', JSON.stringify(users));
+        deleteResetToken(pendingResetToken);
+
+        resetStatus.textContent = c.resetDone;
+
+        // cleanup URL
+        try { window.history.replaceState({}, document.title, window.location.pathname); } catch {}
+
+        setTimeout(() => { closeReset(); openAuth(); }, 700);
+      });
+
+      // ---------- Join Form status (no fetch, no CORS) ----------
+      const joinForm = document.getElementById('join-form');
+      const joinStatus = document.getElementById('join-status');
+      const joinSubmitBtn = document.getElementById('join-submit');
+
+      joinForm.addEventListener('submit', () => {
+        const c = content[currentLang];
+        joinStatus.textContent = currentLang === 'ar' ? 'تم إرسال الطلب... تحقق من الإيميل.' : 'Submitted... check your email.';
+        joinSubmitBtn.disabled = true;
+        setTimeout(() => { joinSubmitBtn.disabled = false; }, 1200);
+      });
+
+      // ---------- Account / Theme ----------
+      const accountModal = document.getElementById('account-modal');
+      const accountOpenBtn = document.getElementById('account-open');
+      const accountCloseBtn = document.getElementById('account-close');
+
+      const accName = document.getElementById('acc-name');
+      const accEmail = document.getElementById('acc-email');
+      const accTime = document.getElementById('acc-time');
+
+      const setBg = document.getElementById('set-bg');
+      const setSurface = document.getElementById('set-surface');
+      const setText = document.getElementById('set-text');
+      const setPrimary = document.getElementById('set-primary');
+      const setAction = document.getElementById('set-action');
+
+      const saveThemeBtn = document.getElementById('save-theme');
+      const resetThemeBtn = document.getElementById('reset-theme');
+      const logoutBtn = document.getElementById('logout-btn');
+
+      function openAccount() {
+        const session = getSession();
+        if (!session) { openAuth(); return; }
+
+        accName.textContent = session.name || '—';
+        accEmail.textContent = session.email || '—';
+        try { accTime.textContent = new Date(session.loggedInAt).toLocaleString(); }
+        catch { accTime.textContent = session.loggedInAt || '—'; }
+
+        const cfg = window.elementSdk?.config || savedTheme || defaultConfig;
+        setBg.value = cfg.background_color || defaultConfig.background_color;
+        setSurface.value = cfg.surface_color || defaultConfig.surface_color;
+        setText.value = cfg.text_color || defaultConfig.text_color;
+        setPrimary.value = cfg.primary_color || defaultConfig.primary_color;
+        setAction.value = cfg.primary_action_color || defaultConfig.primary_action_color;
+
+        accountModal.classList.remove('hidden');
+        accountModal.classList.add('flex');
+      }
+
+      function closeAccount() {
+        accountModal.classList.add('hidden');
+        accountModal.classList.remove('flex');
+      }
+
+      accountOpenBtn.addEventListener('click', openAccount);
+      accountCloseBtn.addEventListener('click', closeAccount);
+      accountModal.addEventListener('click', (e) => { if (e.target === accountModal) closeAccount(); });
+
+      saveThemeBtn.addEventListener('click', () => {
+        const newTheme = {
+          ...(window.elementSdk?.config || defaultConfig),
+          background_color: setBg.value,
+          surface_color: setSurface.value,
+          text_color: setText.value,
+          primary_color: setPrimary.value,
+          primary_action_color: setAction.value
+        };
+        localStorage.setItem('sk_theme', JSON.stringify(newTheme));
+        applyConfigToCssVars(newTheme);
+        if (window.elementSdk) window.elementSdk.setConfig(newTheme);
+      });
+
+      resetThemeBtn.addEventListener('click', () => {
+        localStorage.removeItem('sk_theme');
+        applyConfigToCssVars(defaultConfig);
+        if (window.elementSdk) window.elementSdk.setConfig(defaultConfig);
+        setBg.value = defaultConfig.background_color;
+        setSurface.value = defaultConfig.surface_color;
+        setText.value = defaultConfig.text_color;
+        setPrimary.value = defaultConfig.primary_color;
+        setAction.value = defaultConfig.primary_action_color;
+      });
+
+      logoutBtn.addEventListener('click', () => { clearSession(); updateNavAuthState(); closeAccount(); });
+
+      // ---------- Edit Name ----------
+      const editNameBtn = document.getElementById('edit-name-btn');
+      const editNameModal = document.getElementById('edit-name-modal');
+      const editNameClose = document.getElementById('edit-name-close');
+      const editNameInput = document.getElementById('edit-name-input');
+      const editNameSave = document.getElementById('edit-name-save');
+      const editNameStatus = document.getElementById('edit-name-status');
+
+      function openEditName() {
+        editNameStatus.textContent = '';
+        const session = getSession();
+        editNameInput.value = session?.name || '';
+        editNameModal.classList.remove('hidden');
+        editNameModal.classList.add('flex');
+      }
+
+      function closeEditName() {
+        editNameModal.classList.add('hidden');
+        editNameModal.classList.remove('flex');
+      }
+
+      editNameBtn.addEventListener('click', openEditName);
+      editNameClose.addEventListener('click', closeEditName);
+      editNameModal.addEventListener('click', (e) => { if (e.target === editNameModal) closeEditName(); });
+
+      editNameSave.addEventListener('click', () => {
+        const newName = (editNameInput.value || '').trim();
+        if (!newName) {
+          editNameStatus.textContent = currentLang === 'ar' ? 'الرجاء إدخال الاسم الجديد.' : 'Please enter new name.';
+          return;
+        }
+
+        const session = getSession();
+        if (!session) {
+          editNameStatus.textContent = currentLang === 'ar' ? 'لم يتم العثور على جلسة.' : 'Session not found.';
+          return;
+        }
+
+        const users = safeParse(localStorage.getItem('sk_users') || '[]', []);
+        const idx = users.findIndex(u => u.email === session.email);
+        if (idx === -1) {
+          editNameStatus.textContent = currentLang === 'ar' ? 'المستخدم غير موجود.' : 'User not found.';
+          return;
+        }
+
+        users[idx].name = newName;
+        localStorage.setItem('sk_users', JSON.stringify(users));
+
+        // update session
+        session.name = newName;
+        setSession(session);
+
+        editNameStatus.textContent = currentLang === 'ar' ? 'تم تحديث الاسم بنجاح.' : 'Name updated successfully.';
+        setTimeout(() => { closeEditName(); openAccount(); }, 800);
+      });
+
+      // ---------- Edit Password ----------
+      const editPasswordBtn = document.getElementById('edit-password-btn');
+      const editPasswordModal = document.getElementById('edit-password-modal');
+      const editPasswordClose = document.getElementById('edit-password-close');
+      const editPasswordOld = document.getElementById('edit-password-old');
+      const editPasswordNew = document.getElementById('edit-password-new');
+      const editPasswordConfirm = document.getElementById('edit-password-confirm');
+      const editPasswordSave = document.getElementById('edit-password-save');
+      const editPasswordStatus = document.getElementById('edit-password-status');
+
+      function openEditPassword() {
+        editPasswordStatus.textContent = '';
+        editPasswordOld.value = '';
+        editPasswordNew.value = '';
+        editPasswordConfirm.value = '';
+        editPasswordModal.classList.remove('hidden');
+        editPasswordModal.classList.add('flex');
+      }
+
+      function closeEditPassword() {
+        editPasswordModal.classList.add('hidden');
+        editPasswordModal.classList.remove('flex');
+      }
+
+      editPasswordBtn.addEventListener('click', openEditPassword);
+      editPasswordClose.addEventListener('click', closeEditPassword);
+      editPasswordModal.addEventListener('click', (e) => { if (e.target === editPasswordModal) closeEditPassword(); });
+
+      editPasswordSave.addEventListener('click', () => {
+        const oldPassword = (editPasswordOld.value || '').trim();
+        const newPassword = (editPasswordNew.value || '').trim();
+        const confirmPassword = (editPasswordConfirm.value || '').trim();
+
+        if (!oldPassword || !newPassword || !confirmPassword) {
+          editPasswordStatus.textContent = currentLang === 'ar' ? 'يرجى إدخال جميع الحقول.' : 'Please fill all fields.';
+          return;
+        }
+
+        if (newPassword !== confirmPassword) {
+          editPasswordStatus.textContent = currentLang === 'ar' ? 'كلمتا المرور الجديدة غير متطابقتين.' : 'New passwords do not match.';
+          return;
+        }
+
+        const session = getSession();
+        if (!session) {
+          editPasswordStatus.textContent = currentLang === 'ar' ? 'لم يتم العثور على جلسة.' : 'Session not found.';
+          return;
+        }
+
+        const users = safeParse(localStorage.getItem('sk_users') || '[]', []);
+        const idx = users.findIndex(u => u.email === session.email && u.password === oldPassword);
+        if (idx === -1) {
+          editPasswordStatus.textContent = currentLang === 'ar' ? 'كلمة المرور الحالية غير صحيحة.' : 'Current password is incorrect.';
+          return;
+        }
+
+        users[idx].password = newPassword;
+        localStorage.setItem('sk_users', JSON.stringify(users));
+
+        editPasswordStatus.textContent = currentLang === 'ar' ? 'تم تحديث كلمة المرور بنجاح.' : 'Password updated successfully.';
+        setTimeout(() => { closeEditPassword(); openAccount(); }, 800);
+      });
+
+
+      // ---------- Boot ----------
+      const bootConfig = savedTheme || defaultConfig;
+      updateContent(bootConfig);
+      updateNavAuthState();
+      initEmailJsIfPossible();
+
+      // If opened from reset link: ?reset=TOKEN&email=...
+      (function checkResetQuery() {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('reset');
+        const email = (params.get('email') || '').toLowerCase();
+        if (!token || !email) return;
+
+        pendingResetToken = token;
+        pendingResetEmail = email;
+
+        const data = consumeResetToken(token);
+        if (!data || data.email !== email) {
+          resetStatus.textContent = content[currentLang].resetInvalid;
+          openReset();
+          return;
+        }
+        openReset();
+      })();
+    </script>
+
+    <script>
+(function(){
+  // If you want to use EmailJS (recommended) create account at https://www.emailjs.com
+  // then replace the IDs below with your EmailJS "user id", "service id" and "template id".
+  // Template should accept e.g. to_email, subject, name, email, message (or use form_data).
+  try {
+    if (window.emailjs) {
+      emailjs.init('YOUR_EMAILJS_USER_ID'); // <-- replace
+    }
+  } catch (err) { /* ignore */ }
+
+  const submitBtn = document.getElementById('join-submit');
+  if (!submitBtn) return;
+
+  submitBtn.addEventListener('click', async function (e) {
+    e.preventDefault();
+
+    // find nearest form and collect values
+    const form = submitBtn.closest('form');
+    const data = {};
+    if (form) {
+      new FormData(form).forEach((value, key) => {
+        if (data[key]) {
+          if (!Array.isArray(data[key])) data[key] = [data[key]];
+          data[key].push(value);
+        } else {
+          data[key] = value;
+        }
+      });
+    } else {
+      // fallback: grab inputs / textareas near the button
+      document.querySelectorAll('input[name], textarea[name]').forEach(el => {
+        data[el.name] = el.value;
+      });
+    }
+
+    const templateParams = {
+      to_email: 'abdelrahmanabuzaid311@gmail.com',
+      subject: 'New join request',
+      form_data: JSON.stringify(data, null, 2),
+      // optionally map specific fields:
+      name: data.name || '',
+      email: data.email || '',
+      message: data.message || ''
+    };
+
+    // Try EmailJS first
+    if (window.emailjs && emailjs.send) {
+      try {
+        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams); // <-- replace
+        alert('تم إرسال الطلب.');
+      } catch (err) {
+        console.error('EmailJS send error:', err);
+        alert('فشل الإرسال عبر EmailJS. سيتم فتح البريد كـ بديل.');
+        // fallback to mailto
+        const body = encodeURIComponent(Object.entries(data).map(([k,v])=>`${k}: ${v}`).join('\n'));
+        window.location.href = `mailto:abdelrahmanabuzaid311@gmail.com?subject=${encodeURIComponent('New join request')}&body=${body}`;
+      }
+    } else {
+      // If EmailJS not configured: open default mail client
+      const body = encodeURIComponent(Object.entries(data).map(([k,v])=>`${k}: ${v}`).join('\n'));
+      window.location.href = `mailto:abdelrahmanabuzaid311@gmail.com?subject=${encodeURIComponent('New join request')}&body=${body}`;
+    }
+  });
+})();
+</script>
+  </body>
+</html>
