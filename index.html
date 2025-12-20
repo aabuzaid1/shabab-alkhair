@@ -795,7 +795,7 @@
           : 'Note: This is a UI demo. Data is stored locally in the browser only.';
       }
 
-      loginOpen.addEventListener;
+      loginOpen.addEventListener('click', openAuth);
       authClose.addEventListener('click', closeAuth);
       authModal.addEventListener('click', (e) => { if (e.target === authModal) closeAuth(); });
 
@@ -867,10 +867,83 @@
       forgotClose.addEventListener('click', closeForgot);
       forgotModal.addEventListener('click', (e) => { if (e.target === forgotModal) closeForgot(); });
 
+      // ---------- Verification Code Modal ----------
+      let verificationCode = null;
+      let verificationEmail = null;
+
+      const verifyCodeModal = document.createElement('div');
+      verifyCodeModal.id = 'verify-code-modal';
+      verifyCodeModal.className = 'fixed inset-0 hidden items-center justify-center z-[9999]';
+      verifyCodeModal.innerHTML = `
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative w-[92%] max-w-md rounded-2xl p-6 shadow-2xl" style="background: var(--surface-color); color: var(--text-color);">
+          <div class="flex items-center justify-between mb-4">
+            <h3 id="verify-title" class="font-bold text-xl">تأكيد البريد</h3>
+            <button id="verify-close" class="text-2xl leading-none" style="color: var(--text-color);">×</button>
+          </div>
+          <p id="verify-hint" class="text-sm opacity-80 mb-3"></p>
+          <div class="space-y-3">
+            <input id="verify-input" type="text" class="w-full px-4 py-3 rounded-xl border" style="border-color: rgba(0,0,0,0.15); background: var(--background-color);" placeholder="أدخل رمز التحقق" />
+            <button id="verify-btn" class="w-full py-3 rounded-xl font-bold text-white" style="background: var(--primary-color);">تحقق</button>
+            <p id="verify-status" class="text-sm text-center opacity-80"></p>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(verifyCodeModal);
+
+      const verifyTitle = document.getElementById('verify-title');
+      const verifyHint = document.getElementById('verify-hint');
+      const verifyInput = document.getElementById('verify-input');
+      const verifyBtn = document.getElementById('verify-btn');
+      const verifyStatus = document.getElementById('verify-status');
+      const verifyClose = document.getElementById('verify-close');
+
+      function openVerifyCode(email) {
+        verifyTitle.textContent = currentLang === 'ar' ? 'تأكيد البريد الإلكتروني' : 'Verify Email';
+        verifyHint.textContent = currentLang === 'ar' ? `تحقق من بريدك: ${email}` : `Check your email: ${email}`;
+        verifyInput.value = '';
+        verifyStatus.textContent = '';
+        verifyCodeModal.classList.remove('hidden');
+        verifyCodeModal.classList.add('flex');
+      }
+
+      function closeVerifyCode() {
+        verifyCodeModal.classList.add('hidden');
+        verifyCodeModal.classList.remove('flex');
+      }
+
+      verifyClose.addEventListener('click', closeVerifyCode);
+      verifyCodeModal.addEventListener('click', (e) => { if (e.target.classList.contains('absolute')) closeVerifyCode(); });
+
+      verifyBtn.addEventListener('click', () => {
+        const inputCode = (verifyInput.value || '').trim();
+        if (!inputCode) {
+          verifyStatus.textContent = currentLang === 'ar' ? 'أدخل رمز التحقق' : 'Enter verification code';
+          return;
+        }
+        if (inputCode !== verificationCode) {
+          verifyStatus.textContent = currentLang === 'ar' ? 'رمز غير صحيح' : 'Invalid code';
+          return;
+        }
+        closeVerifyCode();
+        forgotEmail.value = verificationEmail;
+        forgotStatus.textContent = currentLang === 'ar' ? 'تم التحقق! يمكنك تغيير كلمة المرور.' : 'Verified! You can now reset your password.';
+        const token = randomToken(40);
+        saveResetToken(token, verificationEmail);
+        const baseUrl = window.location.origin + window.location.pathname;
+        const resetLink = `${baseUrl}?reset=${encodeURIComponent(token)}&email=${encodeURIComponent(verificationEmail)}`;
+        forgotLinkA.textContent = resetLink;
+        forgotLinkA.href = resetLink;
+        forgotLinkBox.classList.remove('hidden');
+      });
+
       forgotSend.addEventListener('click', async () => {
         const c = content[currentLang];
         const email = (forgotEmail.value || '').trim().toLowerCase();
-        if (!email) return;
+        if (!email) {
+          forgotStatus.textContent = currentLang === 'ar' ? 'أدخل البريد الإلكتروني' : 'Please enter email';
+          return;
+        }
 
         const users = safeParse(localStorage.getItem('sk_users') || '[]', []);
         const user = users.find(u => u.email === email);
@@ -879,17 +952,19 @@
           return;
         }
 
-        const token = randomToken(40);
-        saveResetToken(token, email);
+        // Generate verification code
+        verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+        verificationEmail = email;
 
-        // Build reset link to same page with query params
-        const baseUrl = window.location.origin + window.location.pathname;
-        const resetLink = `${baseUrl}?reset=${encodeURIComponent(token)}&email=${encodeURIComponent(email)}`;
-
-        forgotStatus.textContent = c.forgotFallback;
-        forgotLinkA.textContent = resetLink;
-        forgotLinkA.href = resetLink;
-        forgotLinkBox.classList.remove('hidden');
+        forgotStatus.textContent = currentLang === 'ar' ? 'جاري إرسال رمز التحقق...' : 'Sending verification code...';
+        
+        setTimeout(() => {
+          openVerifyCode(email);
+          verifyStatus.innerHTML = currentLang === 'ar' 
+            ? `<span style="background: var(--primary-color); color: white; padding: 10px 16px; border-radius: 8px; display: inline-block; font-weight: bold; margin-top: 12px; font-size: 14px;"><span style="opacity: 0.8;">رمز التحقق:</span><br/><span style="font-family: 'Courier New', monospace; letter-spacing: 4px; font-size: 18px; margin-top: 8px; display: block;">${verificationCode}</span></span>` 
+            : `<span style="background: var(--primary-color); color: white; padding: 10px 16px; border-radius: 8px; display: inline-block; font-weight: bold; margin-top: 12px; font-size: 14px;"><span style="opacity: 0.8;">Verification Code:</span><br/><span style="font-family: 'Courier New', monospace; letter-spacing: 4px; font-size: 18px; margin-top: 8px; display: block;">${verificationCode}</span></span>`;
+          closeForgot();
+        }, 600);
       });
 
       // ---------- Reset Password (from link) ----------
