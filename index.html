@@ -8,9 +8,6 @@
     <script src="/_sdk/element_sdk.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- OPTIONAL: EmailJS (for real "forgot password" emails) -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
     <style>
       body { box-sizing: border-box; }
       @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap');
@@ -414,34 +411,6 @@
     </div>
 
     <script>
-      // =========================
-      // EmailJS CONFIG (optional)
-      // =========================
-      // لكي يرسل "نسيت كلمة السر" إيميل فعليًا للمستخدم:
-      // 1) افتح EmailJS
-      // 2) اعمل Service + Template
-      // 3) ضع القيم هنا
-      const EMAILJS_PUBLIC_KEY = "SALPskXDIrjldwsJX";   // مثال: "AbC123..."
-      const EMAILJS_SERVICE_ID = "service_v7stjek";   // مثال: "service_xxx"
-      const EMAILJS_TEMPLATE_ID = "__ejs-test-mail-service__";  // مثال: "template_xxx"
-
-      // Template variables المقترحة داخل EmailJS:
-      // to_email = ايميل المستخدم
-      // reset_link = رابط تغيير كلمة المرور
-      // team_name = اسم الفريق
-
-      function canSendEmail() {
-        return EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && window.emailjs;
-      }
-
-      function initEmailJsIfPossible() {
-        try {
-          if (canSendEmail()) {
-            emailjs.init(EMAILJS_PUBLIC_KEY);
-          }
-        } catch {}
-      }
-
       // ---------- Helpers ----------
       function safeParse(json, fallback) { try { return JSON.parse(json); } catch { return fallback; } }
       function getSession() { return safeParse(localStorage.getItem('sk_session') || 'null', null); }
@@ -538,8 +507,8 @@
           forgotTitle: 'استعادة كلمة المرور',
           forgotBtn: 'إرسال رابط تغيير كلمة السر',
           forgotNoUser: 'هذا الإيميل غير مسجّل لدينا.',
-          forgotSent: 'تم تجهيز الرابط. إذا EmailJS مفعّل، سيتم إرسال الإيميل الآن.',
-          forgotFallback: 'EmailJS غير مفعّل. انسخ الرابط من الأسفل وأرسله للمستخدم.',
+          forgotSent: 'تم تجهيز الرابط. انسخ الرابط من الأسفل.',
+          forgotFallback: 'اضغط نسخ على الرابط أدناه وأرسله للمستخدم.',
 
           resetTitle: 'تعيين كلمة مرور جديدة',
           resetMismatch: 'كلمتا المرور غير متطابقتين.',
@@ -592,8 +561,8 @@
           forgotTitle: 'Password Recovery',
           forgotBtn: 'Send reset link',
           forgotNoUser: 'This email is not registered.',
-          forgotSent: 'Reset link generated. If EmailJS is configured, an email will be sent now.',
-          forgotFallback: 'EmailJS is not configured. Copy the link below and send it to the user.',
+          forgotSent: 'Reset link generated. Copy the link below.',
+          forgotFallback: 'Copy the link below and send it to the user.',
 
           resetTitle: 'Set a new password',
           resetMismatch: 'Passwords do not match.',
@@ -896,15 +865,6 @@
       forgotClose.addEventListener('click', closeForgot);
       forgotModal.addEventListener('click', (e) => { if (e.target === forgotModal) closeForgot(); });
 
-      async function sendResetEmailViaEmailJs(toEmail, resetLink) {
-        // Requires EmailJS configured above
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          to_email: toEmail,
-          reset_link: resetLink,
-          team_name: "Shabab Al-Khair Youth Team"
-        });
-      }
-
       forgotSend.addEventListener('click', async () => {
         const c = content[currentLang];
         const email = (forgotEmail.value || '').trim().toLowerCase();
@@ -924,25 +884,10 @@
         const baseUrl = window.location.origin + window.location.pathname;
         const resetLink = `${baseUrl}?reset=${encodeURIComponent(token)}&email=${encodeURIComponent(email)}`;
 
-        forgotStatus.textContent = c.forgotSent;
-
-        // Try EmailJS, else show link on screen
-        try {
-          initEmailJsIfPossible();
-          if (canSendEmail()) {
-            await sendResetEmailViaEmailJs(email, resetLink);
-          } else {
-            forgotStatus.textContent = c.forgotFallback;
-            forgotLinkA.textContent = resetLink;
-            forgotLinkA.href = resetLink;
-            forgotLinkBox.classList.remove('hidden');
-          }
-        } catch (err) {
-          forgotStatus.textContent = c.forgotFallback;
-          forgotLinkA.textContent = resetLink;
-          forgotLinkA.href = resetLink;
-          forgotLinkBox.classList.remove('hidden');
-        }
+        forgotStatus.textContent = c.forgotFallback;
+        forgotLinkA.textContent = resetLink;
+        forgotLinkA.href = resetLink;
+        forgotLinkBox.classList.remove('hidden');
       });
 
       // ---------- Reset Password (from link) ----------
@@ -1245,7 +1190,6 @@
       const bootConfig = savedTheme || defaultConfig;
       updateContent(bootConfig);
       updateNavAuthState();
-      initEmailJsIfPossible();
 
       // If opened from reset link: ?reset=TOKEN&email=...
       (function checkResetQuery() {
@@ -1266,72 +1210,5 @@
         openReset();
       })();
     </script>
-
-    <script>
-(function(){
-  // If you want to use EmailJS (recommended) create account at https://www.emailjs.com
-  // then replace the IDs below with your EmailJS "user id", "service id" and "template id".
-  // Template should accept e.g. to_email, subject, name, email, message (or use form_data).
-  try {
-    if (window.emailjs) {
-      emailjs.init('YOUR_EMAILJS_USER_ID'); // <-- replace
-    }
-  } catch (err) { /* ignore */ }
-
-  const submitBtn = document.getElementById('join-submit');
-  if (!submitBtn) return;
-
-  submitBtn.addEventListener('click', async function (e) {
-    e.preventDefault();
-
-    // find nearest form and collect values
-    const form = submitBtn.closest('form');
-    const data = {};
-    if (form) {
-      new FormData(form).forEach((value, key) => {
-        if (data[key]) {
-          if (!Array.isArray(data[key])) data[key] = [data[key]];
-          data[key].push(value);
-        } else {
-          data[key] = value;
-        }
-      });
-    } else {
-      // fallback: grab inputs / textareas near the button
-      document.querySelectorAll('input[name], textarea[name]').forEach(el => {
-        data[el.name] = el.value;
-      });
-    }
-
-    const templateParams = {
-      to_email: 'abdelrahmanabuzaid311@gmail.com',
-      subject: 'New join request',
-      form_data: JSON.stringify(data, null, 2),
-      // optionally map specific fields:
-      name: data.name || '',
-      email: data.email || '',
-      message: data.message || ''
-    };
-
-    // Try EmailJS first
-    if (window.emailjs && emailjs.send) {
-      try {
-        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams); // <-- replace
-        alert('تم إرسال الطلب.');
-      } catch (err) {
-        console.error('EmailJS send error:', err);
-        alert('فشل الإرسال عبر EmailJS. سيتم فتح البريد كـ بديل.');
-        // fallback to mailto
-        const body = encodeURIComponent(Object.entries(data).map(([k,v])=>`${k}: ${v}`).join('\n'));
-        window.location.href = `mailto:abdelrahmanabuzaid311@gmail.com?subject=${encodeURIComponent('New join request')}&body=${body}`;
-      }
-    } else {
-      // If EmailJS not configured: open default mail client
-      const body = encodeURIComponent(Object.entries(data).map(([k,v])=>`${k}: ${v}`).join('\n'));
-      window.location.href = `mailto:abdelrahmanabuzaid311@gmail.com?subject=${encodeURIComponent('New join request')}&body=${body}`;
-    }
-  });
-})();
-</script>
   </body>
 </html>
