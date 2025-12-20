@@ -50,7 +50,7 @@
           <div class="flex justify-between items-center h-16">
             <div class="flex items-center gap-3">
               <!-- LOGO -->
-              <div class="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center border"
+              <div class="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center border"
      style="border-color: rgba(0,0,0,0.10); background: white;">
   <img src="3444.jpeg" alt="Shabab Al-Khair Logo"
        class="w-full h-full object-cover"
@@ -162,23 +162,12 @@
           <h3 id="join-title" class="font-bold mb-6 text-white" style="font-size: calc(var(--base-font-size) * 2px);"></h3>
           <p id="join-description" class="mb-6 text-white leading-relaxed" style="font-size: calc(var(--base-font-size) * 1.1px); opacity: 0.95;"></p>
 
-          <!-- Hidden iframe so submit doesn't navigate away (more reliable than fetch/CORS) -->
-          <iframe name="hidden_iframe" style="display:none;"></iframe>
-
-          <!-- FormSubmit -> your Gmail -->
+          <!-- Formspree Form -->
           <form id="join-form" class="mt-6 grid gap-3"
-                action="https://formsubmit.co/abdelrahmanabuzaid311@gmail.com"
-                method="POST"
-                target="hidden_iframe">
+                action="https://formspree.io/f/xgowkkqd"
+                method="POST">
 
-            <input type="hidden" name="_subject" value="طلب انضمام جديد | Shabab Al-Khair" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
-
-            <!-- IMPORTANT: FormSubmit requires first-time email verification -->
-            <input type="hidden" name="_autoresponse" value="تم استلام طلبك بنجاح. سنقوم بالتواصل معك قريبًا. شكراً لانضمامك لفريق شباب الخير." />
-
-            <input id="join-fullname" name="fullName" class="w-full px-4 py-3 rounded-xl border"
+            <input id="join-fullname" name="name" class="w-full px-4 py-3 rounded-xl border"
               style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95);"
               placeholder="الاسم الكامل / Full Name" required />
 
@@ -186,20 +175,13 @@
               style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95);"
               placeholder="رقم الهاتف / Phone" required />
 
-            <!-- naming this 'email' helps FormSubmit set reply-to -->
             <input id="join-email" name="email" type="email" class="w-full px-4 py-3 rounded-xl border"
               style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95);"
               placeholder="البريد الإلكتروني / Email" required />
 
-            <select id="join-interest" name="interest" class="w-full px-4 py-3 rounded-xl border"
-              style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95);">
-              <option value="مجال التطوع / Volunteer Area">مجال التطوع / Volunteer Area</option>
-              <option value="مبادرات خيرية / Charity">مبادرات خيرية / Charity</option>
-              <option value="تعليم وتوعية / Education">تعليم وتوعية / Education</option>
-              <option value="دعم أطفال / Children Support">دعم أطفال / Children Support</option>
-              <option value="إعلام وتصميم / Media & Design">إعلام وتصميم / Media & Design</option>
-              <option value="تنظيم فعاليات / Events">تنظيم فعاليات / Events</option>
-            </select>
+            <textarea id="join-message" name="message" class="w-full px-4 py-3 rounded-xl border"
+              style="border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.95); resize: vertical; min-height: 100px;"
+              placeholder="الرسالة / Message" required></textarea>
 
             <button type="submit" id="join-submit"
               class="px-10 py-4 rounded-full font-bold shadow-lg transition-all hover:scale-105"
@@ -211,7 +193,7 @@
           </form>
 
           <p class="mt-3 text-white text-xs opacity-80" id="join-note">
-            ملاحظة: أول مرة فقط قد يطلب منك تأكيد الإيميل داخل Gmail لتفعيل استقبال الطلبات من FormSubmit.
+            ملاحظة: سيتم إرسال طلبك مباشرة إلى بريدنا الإلكتروني.
           </p>
         </div>
       </section>
@@ -439,12 +421,12 @@
       // 1) افتح EmailJS
       // 2) اعمل Service + Template
       // 3) ضع القيم هنا
-      const EMAILJS_PUBLIC_KEY = "0d7IjO1XiV8c9De_q";   // مثال: "AbC123..."
+      const EMAILJS_PUBLIC_KEY = "SALPskXDIrjldwsJX";   // مثال: "AbC123..."
       const EMAILJS_SERVICE_ID = "service_v7stjek";   // مثال: "service_xxx"
-      const EMAILJS_TEMPLATE_ID = "ejs-test-mail-service";  // مثال: "template_xxx"
+      const EMAILJS_TEMPLATE_ID = "__ejs-test-mail-service__";  // مثال: "template_xxx"
 
       // Template variables المقترحة داخل EmailJS:
-      // to_email =ايميل المستخدم
+      // to_email = ايميل المستخدم
       // reset_link = رابط تغيير كلمة المرور
       // team_name = اسم الفريق
 
@@ -842,7 +824,7 @@
           : 'Note: This is a UI demo. Data is stored locally in the browser only.';
       }
 
-      loginOpen.addEventListener('click', openAuth);
+      loginOpen.addEventListener;
       authClose.addEventListener('click', closeAuth);
       authModal.addEventListener('click', (e) => { if (e.target === authModal) closeAuth(); });
 
@@ -1027,16 +1009,41 @@
         setTimeout(() => { closeReset(); openAuth(); }, 700);
       });
 
-      // ---------- Join Form status (no fetch, no CORS) ----------
+      // ---------- Join Form status (Formspree) ----------
       const joinForm = document.getElementById('join-form');
       const joinStatus = document.getElementById('join-status');
       const joinSubmitBtn = document.getElementById('join-submit');
 
-      joinForm.addEventListener('submit', () => {
+      joinForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
         const c = content[currentLang];
-        joinStatus.textContent = currentLang === 'ar' ? 'تم إرسال الطلب... تحقق من الإيميل.' : 'Submitted... check your email.';
+        joinStatus.textContent = currentLang === 'ar' ? 'جاري الإرسال...' : 'Submitting...';
         joinSubmitBtn.disabled = true;
-        setTimeout(() => { joinSubmitBtn.disabled = false; }, 1200);
+
+        try {
+          const formData = new FormData(joinForm);
+          const response = await fetch(joinForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            joinStatus.textContent = currentLang === 'ar' ? '✓ تم إرسال طلبك بنجاح! شكراً لانضمامك.' : '✓ Successfully submitted! Thank you for joining.';
+            joinForm.reset();
+            // Keep submit button disabled for a bit
+            setTimeout(() => { joinSubmitBtn.disabled = false; joinStatus.textContent = ''; }, 3000);
+          } else {
+            joinStatus.textContent = currentLang === 'ar' ? '✗ حدث خطأ. حاول مرة أخرى.' : '✗ Error. Please try again.';
+            joinSubmitBtn.disabled = false;
+          }
+        } catch (error) {
+          joinStatus.textContent = currentLang === 'ar' ? '✗ خطأ في الاتصال. تحقق من الإنترنت.' : '✗ Connection error. Check your internet.';
+          joinSubmitBtn.disabled = false;
+        }
       });
 
       // ---------- Account / Theme ----------
